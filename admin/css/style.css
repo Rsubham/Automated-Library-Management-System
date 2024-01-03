@@ -1,0 +1,63 @@
+.body {
+	background-color: rgba(80, 255, 255, 0.288);
+}
+.span12{
+    
+    margin-top: auto;
+    margin-bottom: auto;
+
+}
+.card{
+    margin-top: 50px;
+    margin-left: 120px;
+    max-width: 500px ;
+	border: 2px;
+	font-family: "Times New Roman", Times, serif;
+	background: rgb(255, 255, 255);
+}
+
+.card-image-top{
+margin-bottom: 50px;
+}
+
+.card-body {
+    
+    margin: auto;
+	padding: 20px;
+	background: #829ca4c7;
+    opacity: 8;;
+	text-align: left;
+	color: rgb(255, 255, 255);
+}
+
+.card-body p {
+	font-size: 20px;
+}
+
+.card-body h1 {
+	color: rgb(0, 0, 0);
+}
+
+.card-body b {
+	color: rgb(0, 0 , 0);
+}
+
+
+.footer {
+	color: #999;
+	padding: 30px 0 60px
+}
+.footer .nav li {
+	float: left
+}
+.footer .nav li+li {
+	margin-left: 30px
+}
+.footer .nav li a {
+	color: inherit
+}
+.footer .nav li a:hover {
+	color: #555
+}
+
+

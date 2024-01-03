@@ -1,0 +1,155 @@
+<?php
+session_start();
+require('DBConnectionadd.php');
+include 'nav.php';
+?>
+
+<?php 
+if(!$_SESSION['sroll']){
+
+    echo '<script>alert("Please Login First")
+      location.assign("/rsubhamlbr/login.php");
+      </script>';
+  }else{
+    ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <style>
+            .module {
+	background: #fff;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #ccc;
+	border-bottom-color: #bbb;
+	-webkit-box-shadow: 0 0 1px rgba(0,0,0,0.2);
+	-moz-box-shadow: 0 0 1px rgba(0,0,0,0.2);
+	box-shadow: 0 0 1px rgba(0,0,0,0.2);
+	margin-bottom: 30px
+}
+.module-head {
+	
+	color: #767676;
+background-color: #a2c5d6e6;
+border-color: #e9e9e9;
+
+
+	padding: 10px 15px;
+border-bottom: 1px solid transparent;
+border-top-right-radius: 3px;
+border-top-left-radius: 3px;	
+}
+.module-head h3 {
+	font-size: 14px;
+	line-height: 20px;
+	height: 20px;
+	margin: 0
+}
+.module-body {
+    background-color: #9db2b861;
+	padding: 15px
+}
+
+
+        </style>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link type="text/css" href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link type="text/css" href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link type="text/css" href="css/style.css" rel="stylesheet">
+
+        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
+            rel='stylesheet'>
+    </head>
+    <body>
+
+        <!-- /navbar -->
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="span3">
+                        <div class="sidebar">
+                            <ul class="widget widget-menu unstyled">
+                                <li class="active"><a href="index.php"><i class="menu-icon icon-home"></i>Home
+                                </a></li>
+                                 <li><a href="message.php"><i class="menu-icon icon-inbox"></i>Messages</a>
+                                </li>
+                                <li><a href="book.php"><i class="menu-icon icon-book"></i>All Books </a></li>
+                                <li><a href="history.php"><i class="menu-icon icon-tasks"></i>Previously Borrowed Books </a></li>
+                                <li><a href="recommendations.php"><i class="menu-icon icon-list"></i>Recommend Books </a></li>
+                                <li><a href="current.php"><i class="menu-icon icon-list"></i>Currently Issued Books </a></li>
+                            </ul>
+                            <ul class="widget widget-menu unstyled">
+                                <li><a href="logout.php"><i class="menu-icon icon-signout"></i>Logout </a></li>
+                            </ul>
+                        </div>
+                        <!--/.sidebar-->
+                    </div>
+                    <!--/.span3-->
+                    
+                    <div class="span9">
+                        <div class="content">
+
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>Book Details</h3>
+                            </div>
+                            <div class="module-body">
+                        <?php
+                            $x=$_GET['id'];
+                            $sql="select * from book where booknumber='$x'";
+                            $result=$con->query($sql);
+                            $row=$result->fetch_assoc();    
+                                $bookname=$row['bookname'];
+                                $booknumber=$row['booknumber'];
+                                $authorname=$row['authorname'];
+                                $publisher=$row['publisher'];
+                                $year=$row['year'];
+                                $avail=$row['bookavailable'];
+                                echo "<b>Book Name:</b> ".$bookname."<br><br>";
+                                echo "<b>Book Number:</b> ".$booknumber."<br><br>";
+                                $sql1="select * from book where bookname='$bookname'";
+                                $result=$con->query($sql1);
+                                
+                                echo "<b>Author Name:</b> ";
+                                while($row1=$result->fetch_assoc())
+                                {
+                                    echo $row1['authorname']."&nbsp;";
+                                }
+                                echo "<br><br>";
+
+                                echo "<b>Publisher:</b> ".$publisher."<br><br>";
+                                echo "<b>Year:</b> ".$year."<br><br>";
+                                echo "<b>Availability:</b> ".$avail."<br><br>";
+
+                                
+                        
+                           
+                            ?>
+                            
+                        <a href="book.php" class="btn btn-primary">Go Back</a>                             
+                               </div>
+                           </div>
+                            </div>
+
+                </div>
+
+                </div>
+
+                </div>
+            </div>
+            <div class="footer">
+            <div class="container">
+                <b class="copyright">&copy; 2022 R.SUBHAM </b>All rights reserved.
+            </div>
+        </div>
+      
+    </body>
+
+</html>
+
+<?php }
+ ?>
